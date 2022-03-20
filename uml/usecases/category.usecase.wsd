@@ -1,0 +1,9 @@
+@startuml name Category
+
+:Admin: -> (Criar categoria)
+:Admin: -> (Atualizar categoria)
+:Admin: -> (Excluir categoria)
+:Admin: -> (Consultar categorias)
+:Admin: -> (Consultar uma categoria)
+
+@enduml

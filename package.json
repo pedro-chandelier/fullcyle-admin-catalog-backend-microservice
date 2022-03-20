@@ -1,0 +1,26 @@
+{
+  "name": "catalog-admin",
+  "version": "1.0.0",
+  "description": "video catalog admin",
+  "main": "index.js",
+  "scripts": {
+    "ts-node": "ts-node",
+    "tsc": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedro-chandelier/fullcyle-nestjs-admin-catalog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pedro-chandelier/fullcyle-nestjs-admin-catalog/issues"
+  },
+  "homepage": "https://github.com/pedro-chandelier/fullcyle-nestjs-admin-catalog#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.21",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.2"
+  }
+}
