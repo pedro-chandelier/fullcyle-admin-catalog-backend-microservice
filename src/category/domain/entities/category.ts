@@ -1,4 +1,4 @@
-import { EntityId } from '../../../@shared/domain/value-objects/id'
+import { EntityId } from '../../../@seedwork/domain/value-objects/entity-id'
 
 export class Category {
   readonly _id: EntityId

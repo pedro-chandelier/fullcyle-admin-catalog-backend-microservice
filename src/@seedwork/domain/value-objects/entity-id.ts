@@ -10,7 +10,7 @@ export class EntityId {
   }
 
   assignId(anId?: string): void {
-    if (anId !== null && anId !== undefined) {
+    if (anId !== undefined) {
       this.validateId(anId)
       this._id = anId
     } else {
