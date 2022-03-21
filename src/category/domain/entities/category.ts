@@ -1,18 +1,22 @@
-import { v4 as uuid } from 'uuid'
+import { EntityId } from '../../../@shared/domain/value-objects/id'
 
 export class Category {
-  readonly id: string
+  readonly _id: EntityId
   readonly name: string
   readonly description?: string
   readonly createdAt?: Date
   private _isActive?: boolean
 
   constructor({ id, name, description, is_active, created_at }: CategoryProperties) {
-    this.id = id || uuid()
+    this._id = new EntityId(id)
     this.name = name
     this.description = description
     this.createdAt = created_at ?? new Date()
     this._isActive = is_active ?? true
+  }
+
+  get id(): string {
+    return this._id.id
   }
 
   create(): void {}

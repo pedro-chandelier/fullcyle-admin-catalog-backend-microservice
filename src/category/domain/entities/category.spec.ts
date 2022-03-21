@@ -1,5 +1,3 @@
-import { validate as isValidUUID } from 'uuid'
-
 import { Category } from './category'
 
 describe('Category', () => {
@@ -20,6 +18,12 @@ describe('Category', () => {
     expect(category.createdAt).toBe(creationDate)
   })
 
+  it('should throw when invalid id is specified', () => {
+    expect(() => {
+      new Category({ id: 'invalid_id', name: 'any_name' })
+    }).toThrow()
+  })
+
   it('should create with correct values when optional values are ommited', () => {
     const dateBeforeCreating = new Date('2020-01-01')
     const category = new Category({
@@ -29,7 +33,6 @@ describe('Category', () => {
     })
 
     expect(category.id).toBeDefined()
-    expect(isValidUUID(category.id)).toBeTruthy()
     expect(category.name).toBe('any_name')
     expect(category.description).toBe('any_description')
     expect(category.isActive()).toBe(false)
