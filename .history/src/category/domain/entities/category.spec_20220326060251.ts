@@ -2,7 +2,7 @@ import { UniqueEntityId } from '../../../@seedwork/domain/value-objects/unique-e
 import { Category } from './category'
 
 describe('Category', () => {
-  it('should create with correct values', () => {
+  it.only('should create with correct values', () => {
     const creationDate = new Date()
     const category = new Category({
       id: new UniqueEntityId('123e4567-e89b-12d3-a456-426614174000'),
@@ -66,32 +66,5 @@ describe('Category', () => {
     expect(category.isActive()).toBe(true)
     category.deactivate()
     expect(category.isActive()).toBe(false)
-  })
-
-  it('should return the correct values when gettters are invoked', () => {
-    const createdAt = new Date()
-    const category = new Category({
-      id: new UniqueEntityId('123e4567-e89b-12d3-a456-426614174000'),
-      name: 'any_name',
-      description: 'any_description',
-      is_active: true,
-      created_at: createdAt
-    })
-
-    expect(category.createdAt).toEqual(createdAt)
-    expect(category.name).toBe('any_name')
-    expect(category.description).toBe('any_description')
-  })
-
-  it('should update a category', () => {
-    const category = new Category({
-      id: new UniqueEntityId('123e4567-e89b-12d3-a456-426614174000'),
-      name: 'any_name',
-      description: 'any_description'
-    })
-    category.update('updated_name', 'updated_description')
-
-    expect(category.name).toBe('updated_name')
-    expect(category.description).toBe('updated_description')
   })
 })

@@ -2,17 +2,17 @@ import { Entity } from '../../../@seedwork/domain/entities/entity'
 import { UniqueEntityId } from '../../../@seedwork/domain/value-objects/unique-entity-id/unique-entity-id'
 
 export class Category extends Entity<CategoryProperties> {
-  constructor(readonly props: CategoryProperties) {
-    super(props)
+  constructor(readonly props: CategoryProperties, id?: UniqueEntityId) {
+    super(props, id)
     this.props.name = props.name
     this.props.description = props.description
     this.props.created_at = props.created_at ?? new Date()
     this.props.is_active = props.is_active ?? true
   }
 
-  update(name: string, description: string): void {
-    this.name = name
-    this.description = description
+  update({ name, description }: UpdateCategoryTypes): void {
+    if (name !== undefined) this.name = name
+    if (description !== undefined) this.description = description
   }
 
   isActive(): boolean {
@@ -42,10 +42,11 @@ export class Category extends Entity<CategoryProperties> {
   private set description(value: string) {
     this.props.description = value
   }
+}
 
-  get createdAt (): Date {
-    return this.props.created_at
-  }
+type UpdateCategoryTypes = {
+  name?: string
+  description?: string
 }
 
 type CategoryProperties = {

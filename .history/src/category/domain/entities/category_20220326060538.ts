@@ -10,9 +10,9 @@ export class Category extends Entity<CategoryProperties> {
     this.props.is_active = props.is_active ?? true
   }
 
-  update(name: string, description: string): void {
-    this.name = name
-    this.description = description
+  update({ name, description }: UpdateCategoryTypes): void {
+    if (name !== undefined) this.name = name
+    if (description !== undefined) this.description = description
   }
 
   isActive(): boolean {
@@ -46,6 +46,11 @@ export class Category extends Entity<CategoryProperties> {
   get createdAt (): Date {
     return this.props.created_at
   }
+}
+
+type UpdateCategoryTypes = {
+  name?: string
+  description?: string
 }
 
 type CategoryProperties = {
