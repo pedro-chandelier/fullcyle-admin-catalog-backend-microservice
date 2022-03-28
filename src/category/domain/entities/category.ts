@@ -3,11 +3,16 @@ import { UniqueEntityId } from '../../../@seedwork/domain/value-objects/unique-e
 
 export class Category extends Entity<CategoryProperties> {
   constructor(readonly props: CategoryProperties) {
+    Category.validateConstructor(props)
     super(props)
     this.props.name = props.name
     this.props.description = props.description
     this.props.created_at = props.created_at ?? new Date()
     this.props.is_active = props.is_active ?? true
+  }
+
+  static validateConstructor (props: CategoryProperties): void {
+    if (!props.name) throw new Error('Name is required')
   }
 
   update(name: string, description: string): void {
