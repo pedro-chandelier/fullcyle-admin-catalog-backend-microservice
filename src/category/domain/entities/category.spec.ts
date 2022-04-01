@@ -1,8 +1,12 @@
 import { UniqueEntityId } from '../../../@seedwork/domain/value-objects/unique-entity-id/unique-entity-id'
 import { Category } from './category'
 
-describe('Category', () => {
+describe('Category Unit Tests', () => {
+  // isolating Category.validate so that it does not affect unit tests
+  Category.validate = jest.fn(() => {})
+
   it('should create with correct values', () => {
+
     const creationDate = new Date()
     const category = new Category({
       id: new UniqueEntityId('123e4567-e89b-12d3-a456-426614174000'),
@@ -12,6 +16,7 @@ describe('Category', () => {
       created_at: creationDate
     })
 
+    expect(Category.validate).toHaveBeenCalledTimes(1)
     expect(category.id).toBe('123e4567-e89b-12d3-a456-426614174000')
     expect(category.name).toBe('any_name')
     expect(category.description).toBe('any_description')
@@ -34,6 +39,7 @@ describe('Category', () => {
       is_active: false
     })
 
+    expect(Category.validate).toHaveBeenCalledTimes(1)
     expect(category.id).toBeDefined()
     expect(category.name).toBe('any_name')
     expect(category.description).toBe('any_description')
@@ -50,6 +56,7 @@ describe('Category', () => {
       is_active: false
     })
 
+    expect(Category.validate).toHaveBeenCalledTimes(1)
     expect(category.isActive()).toBe(false)
     category.activate()
     expect(category.isActive()).toBe(true)
@@ -63,6 +70,7 @@ describe('Category', () => {
       is_active: true
     })
 
+    expect(Category.validate).toHaveBeenCalledTimes(1)
     expect(category.isActive()).toBe(true)
     category.deactivate()
     expect(category.isActive()).toBe(false)
@@ -78,6 +86,7 @@ describe('Category', () => {
       created_at: createdAt
     })
 
+    expect(Category.validate).toHaveBeenCalledTimes(1)
     expect(category.createdAt).toEqual(createdAt)
     expect(category.name).toBe('any_name')
     expect(category.description).toBe('any_description')
@@ -91,6 +100,7 @@ describe('Category', () => {
     })
     category.update('updated_name', 'updated_description')
 
+    expect(Category.validate).toHaveBeenCalledTimes(2)
     expect(category.name).toBe('updated_name')
     expect(category.description).toBe('updated_description')
   })

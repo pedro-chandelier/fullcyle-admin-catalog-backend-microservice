@@ -1,4 +1,4 @@
-import { ValidationError } from './errors/validation-error';
+import { ValidationError } from './errors/validation.error';
 import { RulesValidator } from './rules-validator';
 
 type AssertionParams = {

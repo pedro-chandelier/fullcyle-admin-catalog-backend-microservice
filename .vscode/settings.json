@@ -1,2 +1,9 @@
 {
+  "jestrunner.codeLensSelector": "**/*.{test,spec,ispec,int-spec,e2e-spec}.{js,jsx,ts,tsx}",
+  "material-icon-theme.files.associations": {
+    "*.spec.ts": "test-ts",
+    "*.ispec.ts": "test-ts",
+    "*.int-spec.ts": "test-ts",
+    "*.e2e-spec.ts": "test-ts"
+  }
 }
