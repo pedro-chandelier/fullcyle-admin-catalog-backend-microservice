@@ -1,5 +1,5 @@
-import { ValidationError } from './errors/validation.error';
-import { RulesValidator } from './rules-validator';
+import { ValidationError } from './errors/validation.error'
+import { RulesValidator } from './rules-validator'
 
 type AssertionParams = {
   value: any

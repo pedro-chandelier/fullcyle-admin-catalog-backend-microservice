@@ -5,5 +5,6 @@ export default {
   testRegex: ['.*\\..*spec\\.ts$', '.*\\..*test\\.ts$'],
   transform: {
     '^.+\\.ts?$': ['@swc/jest']
-  }
+  },
+  setupFilesAfterEnv: ['./@seedwork/domain/tests/validations.extend.ts']
 }
