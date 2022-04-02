@@ -27,9 +27,9 @@ describe('ClassValidator Unit Tests', () => {
     const validator = new ClassValidatorStub()
     const validateSyncSpy = jest.spyOn(classValidatorLib, 'validateSync').mockReturnValue([])
 
-    expect(validator.validate({ field: 'value' })).toBeTruthy()
+    expect(validator.validate({ name: 'value' })).toBeTruthy()
     expect(validateSyncSpy).toHaveBeenCalled()
-    expect(validator.validatedData).toStrictEqual({ field: 'value' })
+    expect(validator.validatedData).toEqual({ name: 'value' })
     expect(validator.errors).toBeNull()
   })
 })
