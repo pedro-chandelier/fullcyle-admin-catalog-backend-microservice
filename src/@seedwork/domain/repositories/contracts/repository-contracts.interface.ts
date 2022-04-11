@@ -11,7 +11,7 @@ export interface RepositoryInterface<E extends Entity> {
   remove: (id: string | UniqueEntityId) => Promise<void>
 }
 
-export interface SearcheableRepositoryInterface<
+export interface SearchableRepositoryInterface<
   E extends Entity,
   Filter = string,
   SearchInput = SearchParams,

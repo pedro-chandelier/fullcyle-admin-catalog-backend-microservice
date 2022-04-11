@@ -1,4 +1,6 @@
-import { RepositoryInterface, SearcheableRepositoryInterface } from '../contracts/repository-contracts.interface'
+import { SearchResult } from './../contracts/repository-contracts-search-result'
+import { SearchParams } from './../contracts/repository-contracts-search-params'
+import { RepositoryInterface, SearchableRepositoryInterface } from '../contracts/repository-contracts.interface'
 import { Entity } from '../../entities/entity'
 import { UniqueEntityId } from '../../value-objects/unique-entity-id/unique-entity-id'
 import { EntityNotFoundError } from '../errors/entity-not-found.error'
@@ -41,11 +43,29 @@ export abstract class InMemoryRepository<E extends Entity> implements Repository
   }
 }
 
-export abstract class InMemorySearcheableRepository<E extends Entity>
+export abstract class InMemorySearchableRepository<E extends Entity>
   extends InMemoryRepository<E>
-  implements SearcheableRepositoryInterface<E, any, any>
+  implements SearchableRepositoryInterface<E>
 {
-  search (props: any): Promise<any> {
-    throw new Error('Not implemented yet')
+  protected abstract applyFilter(items: E[], filter: string | null): Promise<E[]>
+
+  protected abstract applySort(items: E[], sort: string | null, sortDir: string | null): Promise<E[]>
+
+  protected abstract applyPagination(items: E[], page: SearchParams['page'], pageSize: SearchParams['page_size']): Promise<E[]>
+
+  async search(props: SearchParams): Promise<SearchResult<E>> {
+    const filteredItems = await this.applyFilter(this.items, props.filter)
+    const sortedItems = await this.applySort(filteredItems, props.sort, props.sort_dir)
+    const paginatedItems = await this.applyPagination(sortedItems, props.page, props.page_size)
+
+    return new SearchResult({
+      items: paginatedItems,
+      total: filteredItems.length,
+      current_page: props.page,
+      page_size: props.page_size,
+      sort: props.sort,
+      sort_dir: props.sort_dir,
+      filter: props.filter
+    })
   }
 }

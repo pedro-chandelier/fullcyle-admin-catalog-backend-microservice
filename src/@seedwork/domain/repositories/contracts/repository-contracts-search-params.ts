@@ -51,7 +51,7 @@ export class SearchParams {
     this._page_size = parseInt(`${_page_size}`)
   }
 
-  get sort() {
+  get sort(): string | null {
     return this._sort
   }
 
@@ -59,7 +59,7 @@ export class SearchParams {
     this._sort = value === null || value === undefined || value === '' ? null : `${value}`
   }
 
-  get sort_dir() {
+  get sort_dir(): SortDirection | null {
     return this._sort_dir
   }
 
@@ -72,7 +72,7 @@ export class SearchParams {
     this._sort_dir = dir !== 'asc' && dir !== 'desc' ? 'asc' : dir
   }
 
-  get filter() {
+  get filter(): string | null {
     return this._filter
   }
 
