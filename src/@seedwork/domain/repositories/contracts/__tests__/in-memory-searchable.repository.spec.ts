@@ -1,3 +1,5 @@
+import { SearchParams } from '../repository-contracts-search-params'
+import { SearchResult } from '../repository-contracts-search-result'
 import { EntityStub, InMemorySearchableRepositoryStub } from './in-memory-searchable.repository.mocks'
 describe('InMemorySearchableRepository Unit Tests', () => {
   let repository: InMemorySearchableRepositoryStub
@@ -72,9 +74,9 @@ describe('InMemorySearchableRepository Unit Tests', () => {
         new EntityStub({ name: 'b', price: 0 }),
         new EntityStub({ name: 'c', price: 1 }),
         new EntityStub({ name: 'd', price: 1 }),
-        new EntityStub({ name: 'e', price: 1 }),
+        new EntityStub({ name: 'e', price: 1 })
       ]
-  
+
       let paginatedItems = await repository['applyPagination'](items, 1, 2)
       expect(paginatedItems).toStrictEqual([items[0], items[1]])
 
@@ -90,5 +92,156 @@ describe('InMemorySearchableRepository Unit Tests', () => {
   })
 
   describe('search()', () => {
+    it('should apply ONLY pagination when other params are null', async () => {
+      const entity = new EntityStub({ name: 'any_name', price: 10 })
+      const items = Array(16).fill(entity)
+      repository.items = items
+      const result = await repository.search(new SearchParams())
+
+      expect(result.last_page).toBe(2)
+      expect(result).toStrictEqual(
+        new SearchResult({
+          current_page: 1,
+          filter: null,
+          items: items.slice(0, 15),
+          items_per_page: 15,
+          sort: null,
+          sort_dir: null,
+          total: 16
+        })
+      )
+    })
+
+    it('should apply pagination AND filter when only filter is specified', async () => {
+      const items = [
+        new EntityStub({ name: 'any_name', price: 10 }),
+        new EntityStub({ name: 'ANY_NAME', price: 1 }),
+        new EntityStub({ name: 'AnY_NAmE', price: 1 }),
+        new EntityStub({ name: 'a', price: 0 })
+      ]
+
+      repository.items = items
+      let result = await repository.search(
+        new SearchParams({
+          filter: 'any_name',
+          page: 1,
+          items_per_page: 2
+        })
+      )
+
+      expect(result.last_page).toBe(2)
+      expect(result).toStrictEqual(
+        new SearchResult({
+          current_page: 1,
+          filter: 'any_name',
+          items: [items[0], items[1]],
+          items_per_page: 2,
+          sort: null,
+          sort_dir: null,
+          total: 3
+        })
+      )
+
+      result = await repository.search(
+        new SearchParams({
+          filter: 'any_name',
+          page: 2,
+          items_per_page: 2
+        })
+      )
+
+      expect(result.last_page).toBe(2)
+      expect(result).toStrictEqual(
+        new SearchResult({
+          current_page: 2,
+          filter: 'any_name',
+          items: [items[2]],
+          items_per_page: 2,
+          sort: null,
+          sort_dir: null,
+          total: 3
+        })
+      )
+    })
+
+    it('should apply pagination AND sort when only sort is specified', async () => {
+      const items = [
+        new EntityStub({ name: 'a', price: 10 }),
+        new EntityStub({ name: 'c', price: 1 }),
+        new EntityStub({ name: 'b', price: 1 }),
+        new EntityStub({ name: 'f', price: 0 }),
+        new EntityStub({ name: 'e', price: 0 })
+      ]
+
+      repository.items = items
+      let result = await repository.search(
+        new SearchParams({
+          filter: null,
+          sort: 'name',
+          sort_dir: 'asc',
+          page: 1,
+          items_per_page: 2
+        })
+      )
+
+      expect(result.last_page).toBe(3)
+      expect(result).toStrictEqual(
+        new SearchResult({
+          current_page: 1,
+          filter: null,
+          items: [items[0], items[2]],
+          items_per_page: 2,
+          sort: 'name',
+          sort_dir: 'asc',
+          total: 5
+        })
+      )
+
+      result = await repository.search(
+        new SearchParams({
+          filter: null,
+          sort: 'name',
+          sort_dir: 'desc',
+          page: 1,
+          items_per_page: 2
+        })
+      )
+
+      expect(result.last_page).toBe(3)
+      expect(result).toStrictEqual(
+        new SearchResult({
+          current_page: 1,
+          filter: null,
+          items: [items[3], items[4]],
+          items_per_page: 2,
+          sort: 'name',
+          sort_dir: 'desc',
+          total: 5
+        })
+      )
+
+      result = await repository.search(
+        new SearchParams({
+          filter: null,
+          sort: 'name',
+          sort_dir: 'desc',
+          page: 2,
+          items_per_page: 3
+        })
+      )
+
+      expect(result.last_page).toBe(2)
+      expect(result).toStrictEqual(
+        new SearchResult({
+          current_page: 2,
+          filter: null,
+          items: [items[2], items[0]],
+          items_per_page: 3,
+          sort: 'name',
+          sort_dir: 'desc',
+          total: 5
+        })
+      )
+    })
   })
 })

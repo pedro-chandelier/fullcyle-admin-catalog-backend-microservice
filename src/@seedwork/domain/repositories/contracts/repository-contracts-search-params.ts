@@ -1,6 +1,6 @@
 export type SearchProps<Filter = string> = {
   page?: number
-  page_size?: number
+  items_per_page?: number
   sort?: string | null
   sort_dir?: SortDirection | null
   filter?: Filter | null
@@ -10,14 +10,14 @@ export type SortDirection = 'asc' | 'desc'
 
 export class SearchParams {
   protected _page: number
-  protected _page_size: number = 15
+  protected _items_per_page: number = 15
   protected _sort: string | null
   protected _sort_dir: SortDirection | null
   protected _filter: string | null
 
   constructor(props: SearchProps = {}) {
     this.page = props.page
-    this.page_size = props.page_size
+    this.items_per_page = props.items_per_page
     this.sort = props.sort
     this.sort_dir = props.sort_dir
     this.filter = props.filter
@@ -37,18 +37,18 @@ export class SearchParams {
     this._page = parseInt(`${_page}`)
   }
 
-  get page_size() {
-    return this._page_size
+  get items_per_page() {
+    return this._items_per_page
   }
 
-  private set page_size(value: number) {
-    let _page_size = value === (true as any) ? this.page_size : +value
+  private set items_per_page(value: number) {
+    let _items_per_page = value === (true as any) ? this.items_per_page : +value
 
-    if (isNaN(_page_size) || _page_size <= 0) {
-      _page_size = 15
+    if (isNaN(_items_per_page) || _items_per_page <= 0) {
+      _items_per_page = 15
     }
 
-    this._page_size = parseInt(`${_page_size}`)
+    this._items_per_page = parseInt(`${_items_per_page}`)
   }
 
   get sort(): string | null {

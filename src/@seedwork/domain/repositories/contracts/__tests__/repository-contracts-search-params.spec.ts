@@ -24,28 +24,28 @@ describe('SearchParams Unit Tests', () => {
     }
   })
 
-  test('page_size prop', () => {
+  test('items_per_page prop', () => {
     const testCases = [
-      { page_size: null, expected: 15 },
-      { page_size: undefined, expected: 15 },
-      { page_size: '', expected: 15 },
-      { page_size: 0, expected: 15 },
-      { page_size: 5.5, expected: 5 },
-      { page_size: '10', expected: 10 },
-      { page_size: false, expected: 15 },
-      { page_size: true, expected: 15 },
-      { page_size: {}, expected: 15 },
-      { page_size: [], expected: 15 },
-      { page_size: 5, expected: 5 },
-      { page_size: 20, expected: 20 }
+      { items_per_page: null, expected: 15 },
+      { items_per_page: undefined, expected: 15 },
+      { items_per_page: '', expected: 15 },
+      { items_per_page: 0, expected: 15 },
+      { items_per_page: 5.5, expected: 5 },
+      { items_per_page: '10', expected: 10 },
+      { items_per_page: false, expected: 15 },
+      { items_per_page: true, expected: 15 },
+      { items_per_page: {}, expected: 15 },
+      { items_per_page: [], expected: 15 },
+      { items_per_page: 5, expected: 5 },
+      { items_per_page: 20, expected: 20 }
     ]
 
     let params = new SearchParams()
-    expect(params.page_size).toBe(15)
+    expect(params.items_per_page).toBe(15)
 
     for (const testCase of testCases) {
-      params = new SearchParams({ page_size: testCase.page_size as any })
-      expect(params.page_size).toBe(testCase.expected)
+      params = new SearchParams({ items_per_page: testCase.items_per_page as any })
+      expect(params.items_per_page).toBe(testCase.expected)
     }
   })
 
