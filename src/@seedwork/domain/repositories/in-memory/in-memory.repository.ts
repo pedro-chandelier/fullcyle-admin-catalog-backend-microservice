@@ -1,5 +1,5 @@
 import { SearchResult } from './../contracts/repository-contracts-search-result'
-import { SearchParams } from './../contracts/repository-contracts-search-params'
+import { SearchParams, SortDirection } from './../contracts/repository-contracts-search-params'
 import { RepositoryInterface, SearchableRepositoryInterface } from '../contracts/repository-contracts.interface'
 import { Entity } from '../../entities/entity'
 import { UniqueEntityId } from '../../value-objects/unique-entity-id/unique-entity-id'
@@ -47,11 +47,35 @@ export abstract class InMemorySearchableRepository<E extends Entity>
   extends InMemoryRepository<E>
   implements SearchableRepositoryInterface<E>
 {
+  sortableFields: string[] = []
+
   protected abstract applyFilter(items: E[], filter: string | null): Promise<E[]>
 
-  protected abstract applySort(items: E[], sort: string | null, sortDir: string | null): Promise<E[]>
+  protected async applySort(items: E[], sort: string | null, sortDir: SortDirection | null): Promise<E[]> {
+    if (!this.canSort(sort)) return items
 
-  protected abstract applyPagination(items: E[], page: SearchParams['page'], pageSize: SearchParams['page_size']): Promise<E[]>
+    return items.slice(0).sort((a, b) => {
+      if (a.props[sort] < b.props[sort]) {
+        return sortDir === 'asc' ? -1 : 1
+      }
+
+      if (a.props[sort] > b.props[sort]) {
+        return sortDir === 'asc' ? 1 : -1
+      }
+
+      return 0
+    })
+  }
+
+  private canSort(sort: string | null): boolean {
+    return sort && this.sortableFields.includes(sort)
+  }
+
+  protected applyPagination(items: E[], page: SearchParams['page'], pageSize: SearchParams['page_size']): Promise<E[]> {
+    const start = (page - 1) * pageSize
+    const limit = start + pageSize
+    return Promise.resolve(items.slice(start, limit))
+  }
 
   async search(props: SearchParams): Promise<SearchResult<E>> {
     const filteredItems = await this.applyFilter(this.items, props.filter)

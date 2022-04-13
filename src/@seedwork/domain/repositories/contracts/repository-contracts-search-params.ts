@@ -6,7 +6,7 @@ export type SearchProps<Filter = string> = {
   filter?: Filter | null
 }
 
-type SortDirection = 'asc' | 'desc'
+export type SortDirection = 'asc' | 'desc'
 
 export class SearchParams {
   protected _page: number

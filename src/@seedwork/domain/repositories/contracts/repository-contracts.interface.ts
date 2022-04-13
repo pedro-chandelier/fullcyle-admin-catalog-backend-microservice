@@ -18,4 +18,5 @@ export interface SearchableRepositoryInterface<
   SearchOutput = SearchResult<E, Filter>
 > extends RepositoryInterface<E> {
   search: (props: SearchInput) => Promise<SearchOutput>
+  sortableFields: string[]
 }
