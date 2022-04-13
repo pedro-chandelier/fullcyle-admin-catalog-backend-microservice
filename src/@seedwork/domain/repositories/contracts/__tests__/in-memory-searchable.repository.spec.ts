@@ -92,7 +92,7 @@ describe('InMemorySearchableRepository Unit Tests', () => {
   })
 
   describe('search()', () => {
-    it('should apply ONLY pagination when other params are null', async () => {
+    it('should search ONLY applying pagination when other params are null', async () => {
       const entity = new EntityStub({ name: 'any_name', price: 10 })
       const items = Array(16).fill(entity)
       repository.items = items
@@ -112,7 +112,7 @@ describe('InMemorySearchableRepository Unit Tests', () => {
       )
     })
 
-    it('should apply pagination AND filter when only filter is specified', async () => {
+    it('should search applying pagination AND filter when only filter is specified', async () => {
       const items = [
         new EntityStub({ name: 'any_name', price: 10 }),
         new EntityStub({ name: 'ANY_NAME', price: 1 }),
@@ -164,7 +164,7 @@ describe('InMemorySearchableRepository Unit Tests', () => {
       )
     })
 
-    it('should apply pagination AND sort when only sort is specified', async () => {
+    it('should search applying pagination AND sort when only sort is specified', async () => {
       const items = [
         new EntityStub({ name: 'a', price: 10 }),
         new EntityStub({ name: 'c', price: 1 }),
@@ -242,6 +242,79 @@ describe('InMemorySearchableRepository Unit Tests', () => {
           total: 5
         })
       )
+    })
+
+    it('should search applying pagination AND sort AND filter', async () => {
+      const items = [
+        new EntityStub({ name: 'a', price: 10 }),
+        new EntityStub({ name: 'A', price: 1 }),
+        new EntityStub({ name: 'b', price: 1 }),
+        new EntityStub({ name: 'f', price: 0 }),
+        new EntityStub({ name: 'e', price: 0 })
+      ]
+
+      repository.items = items
+      const scenarios = [
+        {
+          params: new SearchParams({
+            filter: 'a',
+            sort: 'name',
+            sort_dir: 'asc',
+            page: 1,
+            items_per_page: 2
+          }),
+          results: new SearchResult({
+            current_page: 1,
+            filter: 'a',
+            items: [items[1], items[0]],
+            items_per_page: 2,
+            sort: 'name',
+            sort_dir: 'asc',
+            total: 2
+          })
+        },
+        {
+          params: new SearchParams({
+            filter: 'a',
+            sort: 'name',
+            sort_dir: 'desc',
+            page: 1,
+            items_per_page: 2
+          }),
+          results: new SearchResult({
+            current_page: 1,
+            filter: 'a',
+            items: [items[0], items[1]],
+            items_per_page: 2,
+            sort: 'name',
+            sort_dir: 'desc',
+            total: 2
+          })
+        },
+        {
+          params: new SearchParams({
+            filter: 'e',
+            sort: 'name',
+            sort_dir: 'desc',
+            page: 10,
+            items_per_page: 2
+          }),
+          results: new SearchResult({
+            current_page: 10,
+            filter: 'e',
+            items: [],
+            items_per_page: 2,
+            sort: 'name',
+            sort_dir: 'desc',
+            total: 1
+          })
+        }
+      ]
+
+      for (const scenario of scenarios) {
+        const result = await repository.search(scenario.params)
+        expect(result).toStrictEqual(scenario.results)
+      }
     })
   })
 })
