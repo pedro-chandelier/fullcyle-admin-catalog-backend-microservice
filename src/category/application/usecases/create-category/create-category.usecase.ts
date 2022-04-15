@@ -1,12 +1,11 @@
 import { Category } from '../../../domain/entities/category'
 import { CategoryRepository } from '../../../domain/repositories/category.repository'
-import { CategoryOutput } from '../@shared/dtos/category.dtos'
-import { CreateCategoryInput } from './create-category.dtos'
+import { CreateCategoryInput, CreateCategoryOutput } from './create-category.dtos'
 
 export class CreateCategoryUseCase {
   constructor(private readonly repository: CategoryRepository.Repository) {}
 
-  async execute(input: CreateCategoryInput): Promise<CategoryOutput> {
+  async execute(input: CreateCategoryInput): Promise<CreateCategoryOutput> {
     const category = new Category(input)
     await this.repository.insert(category)
     return {
