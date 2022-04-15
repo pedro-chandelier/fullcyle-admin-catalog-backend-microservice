@@ -12,15 +12,15 @@ describe('Category Unit Tests', () => {
       id: new UniqueEntityId('123e4567-e89b-12d3-a456-426614174000'),
       name: 'any_name',
       description: 'any_description',
-      is_active: true,
-      created_at: creationDate
+      isActive: true,
+      createdAt: creationDate
     })
 
     expect(Category.validate).toHaveBeenCalledTimes(1)
     expect(category.id).toBe('123e4567-e89b-12d3-a456-426614174000')
     expect(category.name).toBe('any_name')
     expect(category.description).toBe('any_description')
-    expect(category.isActive()).toBe(true)
+    expect(category.isActive).toBe(true)
     expect(category.createdAt).toBe(creationDate)
   })
 
@@ -36,14 +36,14 @@ describe('Category Unit Tests', () => {
       id: new UniqueEntityId('123e4567-e89b-12d3-a456-426614174000'),
       name: 'any_name',
       description: 'any_description',
-      is_active: false
+      isActive: false
     })
 
     expect(Category.validate).toHaveBeenCalledTimes(1)
     expect(category.id).toBeDefined()
     expect(category.name).toBe('any_name')
     expect(category.description).toBe('any_description')
-    expect(category.isActive()).toBe(false)
+    expect(category.isActive).toBe(false)
     expect(category.createdAt).toBeInstanceOf(Date)
     expect(category.createdAt?.getTime()).toBeGreaterThan(dateBeforeCreating.getTime())
   })
@@ -53,13 +53,13 @@ describe('Category Unit Tests', () => {
       id: new UniqueEntityId('123e4567-e89b-12d3-a456-426614174000'),
       name: 'any_name',
       description: 'any_description',
-      is_active: false
+      isActive: false
     })
 
     expect(Category.validate).toHaveBeenCalledTimes(1)
-    expect(category.isActive()).toBe(false)
+    expect(category.isActive).toBe(false)
     category.activate()
-    expect(category.isActive()).toBe(true)
+    expect(category.isActive).toBe(true)
   })
 
   it('should deactivate the category', () => {
@@ -67,13 +67,13 @@ describe('Category Unit Tests', () => {
       id: new UniqueEntityId('123e4567-e89b-12d3-a456-426614174000'),
       name: 'any_name',
       description: 'any_description',
-      is_active: true
+      isActive: true
     })
 
     expect(Category.validate).toHaveBeenCalledTimes(1)
-    expect(category.isActive()).toBe(true)
+    expect(category.isActive).toBe(true)
     category.deactivate()
-    expect(category.isActive()).toBe(false)
+    expect(category.isActive).toBe(false)
   })
 
   it('should return the correct values when gettters are invoked', () => {
@@ -82,8 +82,8 @@ describe('Category Unit Tests', () => {
       id: new UniqueEntityId('123e4567-e89b-12d3-a456-426614174000'),
       name: 'any_name',
       description: 'any_description',
-      is_active: true,
-      created_at: createdAt
+      isActive: true,
+      createdAt: createdAt
     })
 
     expect(Category.validate).toHaveBeenCalledTimes(1)

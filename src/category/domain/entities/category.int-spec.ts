@@ -52,15 +52,15 @@ describe('Category Integration Tests', () => {
         })
     })
 
-    it('should throw when invalid category is_active is specified', () => {
-      expect(() => new Category({ name: 'any_name', is_active: 1 as any }))
+    it('should throw when invalid category isActive is specified', () => {
+      expect(() => new Category({ name: 'any_name', isActive: 1 as any }))
         .toContainValidationErrorMessages({
-          is_active: ['is_active must be a boolean value']
+          isActive: ['isActive must be a boolean value']
         })
 
-      expect(() => new Category({ name: 'any_name', is_active: '' as any }))
+      expect(() => new Category({ name: 'any_name', isActive: '' as any }))
         .toContainValidationErrorMessages({
-          is_active: ['is_active must be a boolean value']
+          isActive: ['isActive must be a boolean value']
         })
     })
 
@@ -69,8 +69,8 @@ describe('Category Integration Tests', () => {
         new Category({ name: 'any_name' }) // NOSONAR
         new Category({ name: 'any_name', description: null }) // NOSONAR
         new Category({ name: 'any_name', description: 'any_description' }) // NOSONAR
-        new Category({ name: 'any_name', description: 'any_description', is_active: true }) // NOSONAR
-        new Category({ name: 'any_name', description: 'any_description', is_active: false }) // NOSONAR
+        new Category({ name: 'any_name', description: 'any_description', isActive: true }) // NOSONAR
+        new Category({ name: 'any_name', description: 'any_description', isActive: false }) // NOSONAR
       }).not.toThrow()
     })
 

@@ -14,14 +14,14 @@ export class CategoryRules {
 
   @IsBoolean()
   @IsOptional()
-  is_active: boolean
+  isActive: boolean
 
   @IsDate()
   @IsOptional()
-  created_at: Date
+  createdAt: Date
 
-  constructor({ name, description, is_active, created_at }: CategoryProperties) {
-    Object.assign(this, { name, description, is_active, created_at })
+  constructor({ name, description, isActive, createdAt }: CategoryProperties) {
+    Object.assign(this, { name, description, isActive, createdAt })
   }
 }
 

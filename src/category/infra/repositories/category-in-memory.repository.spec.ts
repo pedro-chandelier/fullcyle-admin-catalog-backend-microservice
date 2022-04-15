@@ -3,11 +3,11 @@ import { CategoryInMemoryRepository } from './category-in-memory.repository'
 
 describe('CategoryInMemoryRepository Unit Tests', () => {
   const categories = [
-    new Category({ name: 'cat_1', created_at: new Date('2022-01-01'), description: 'desc_cat_1' }),
-    new Category({ name: 'cat_4', created_at: new Date('2022-01-04'), description: 'desc_cat_4' }),
-    new Category({ name: 'CAT_1', created_at: new Date('2022-01-05'), description: 'desc_cat_5' }),
-    new Category({ name: 'cat_3', created_at: new Date('2022-01-03'), description: 'desc_cat_3' }),
-    new Category({ name: 'cat_2', created_at: new Date('2022-01-02'), description: 'desc_cat_2' })
+    new Category({ name: 'cat_1', createdAt: new Date('2022-01-01'), description: 'desc_cat_1' }),
+    new Category({ name: 'cat_4', createdAt: new Date('2022-01-04'), description: 'desc_cat_4' }),
+    new Category({ name: 'CAT_1', createdAt: new Date('2022-01-05'), description: 'desc_cat_5' }),
+    new Category({ name: 'cat_3', createdAt: new Date('2022-01-03'), description: 'desc_cat_3' }),
+    new Category({ name: 'cat_2', createdAt: new Date('2022-01-02'), description: 'desc_cat_2' })
   ]
   const repository = new CategoryInMemoryRepository()
 
@@ -29,13 +29,13 @@ describe('CategoryInMemoryRepository Unit Tests', () => {
   })
 
   describe('applySort()', () => {
-    it('should sort by created_at when filter is not specified', async () => {
+    it('should sort by createdAt when filter is not specified', async () => {
       const sorted = await repository['applySort'](categories, null, null)
       expect(sorted).toStrictEqual([categories[2], categories[1], categories[3], categories[4], categories[0]])
     })
 
-    it('should sort by created_at asc when filter created_at asc is specified', async () => {
-      const sorted = await repository['applySort'](categories, 'created_at', 'asc')
+    it('should sort by createdAt asc when filter createdAt asc is specified', async () => {
+      const sorted = await repository['applySort'](categories, 'createdAt', 'asc')
       expect(sorted).toStrictEqual([categories[0], categories[4], categories[3], categories[1], categories[2]])
     })
 

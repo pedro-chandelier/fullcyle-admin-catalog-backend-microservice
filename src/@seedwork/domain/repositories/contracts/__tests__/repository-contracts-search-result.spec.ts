@@ -1,4 +1,4 @@
-import { SearchResult } from './repository-contracts-search-result'
+import { SearchResult } from '../repository-contracts-search-result'
 describe('SearchResult Unit Tests', () => {
   test('constructor props', () => {
     let result = new SearchResult({

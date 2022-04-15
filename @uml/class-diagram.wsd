@@ -5,8 +5,8 @@ entity Category
 Category : uuid id
 Category : string name
 Category : string description
-Category : boolean is_active
-Category : date created_at
+Category : boolean isActive
+Category : date createdAt
 
 Category : create()
 Category : update()

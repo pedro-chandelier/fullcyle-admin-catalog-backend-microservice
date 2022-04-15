@@ -55,8 +55,8 @@ describe('CategoryValidator Tests', () => {
       { name: 'any_name' },
       { name: 'any_name', description: null },
       { name: 'any_name', description: undefined },
-      { name: 'any_name', is_active: true },
-      { name: 'any_name', is_active: false }
+      { name: 'any_name', isActive: true },
+      { name: 'any_name', isActive: false }
     ]
 
     validScenarios.forEach(scenario => {

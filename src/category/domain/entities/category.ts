@@ -8,15 +8,15 @@ export class Category extends Entity<CategoryProperties> {
     Category.validate(props)
     super(props)
     this.props.name = props.name
-    this.props.description = props.description
-    this.props.created_at = props.created_at ?? new Date()
-    this.props.is_active = props.is_active ?? true
+    this.props.description = props.description ?? null
+    this.props.createdAt = props.createdAt ?? new Date()
+    this.props.isActive = props.isActive ?? true
   }
 
-  // static validate (props: Omit<CategoryProperties, 'created_at'>): void {
+  // static validate (props: Omit<CategoryProperties, 'createdAt'>): void {
   //   RulesValidator.validate(props.name, 'name').string().maxLength(255).required()
   //   RulesValidator.validate(props.description, 'description').string()
-  //   RulesValidator.validate(props.is_active, 'is_active').boolean()
+  //   RulesValidator.validate(props.isActive, 'isActive').boolean()
   // }
 
   static validate (props: CategoryProperties): void {
@@ -33,15 +33,15 @@ export class Category extends Entity<CategoryProperties> {
   }
 
   activate (): void {
-    this.props.is_active = true
+    this.props.isActive = true
   }
 
   deactivate (): void {
-    this.props.is_active = false
+    this.props.isActive = false
   }
 
-  isActive (): boolean {
-    return !!this.props.is_active
+  get isActive (): boolean {
+    return !!this.props.isActive
   }
 
   get name (): string {
@@ -61,7 +61,7 @@ export class Category extends Entity<CategoryProperties> {
   }
 
   get createdAt (): Date {
-    return this.props.created_at
+    return this.props.createdAt
   }
 }
 
@@ -69,6 +69,6 @@ export type CategoryProperties = {
   id?: UniqueEntityId
   name: string
   description?: string
-  is_active?: boolean
-  created_at?: Date
+  isActive?: boolean
+  createdAt?: Date
 }
