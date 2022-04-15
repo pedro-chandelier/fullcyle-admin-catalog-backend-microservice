@@ -10,7 +10,7 @@ export class CategoryInMemoryRepository extends InMemorySearchableRepository<Cat
     if (!filter) return items
 
     return items.filter(e => {
-      return e.props[filter].toLowerCase().includes(filter.toLowerCase())
+      return e.props.name.toLowerCase().includes(filter.toLowerCase())
     })
   }
 
