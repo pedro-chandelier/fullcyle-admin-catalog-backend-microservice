@@ -8,7 +8,10 @@
     "tsc": "tsc",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:watch:all": "jest --watchAll"
+    "test:watch:all": "jest --watchAll",
+    "precommit": "lint-staged",
+    "prepush": "npm run test",
+    "postinstall": "husky install"
   },
   "repository": {
     "type": "git",
