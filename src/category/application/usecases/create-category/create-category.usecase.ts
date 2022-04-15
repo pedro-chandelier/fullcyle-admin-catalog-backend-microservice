@@ -4,7 +4,7 @@ import { CreateCategoryInput, CreateCategoryOutput } from './create-category.dto
 
 export class CreateCategoryUseCase {
   constructor(private readonly repository: CategoryRepository.Repository) {}
-
+   
   async execute(input: CreateCategoryInput): Promise<CreateCategoryOutput> {
     const category = new Category(input)
     await this.repository.insert(category)
