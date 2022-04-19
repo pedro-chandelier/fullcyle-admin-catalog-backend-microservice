@@ -1,7 +1,8 @@
+import { UseCase } from '../../../../@seedwork/application/usecase'
 import { CategoryRepository } from '../../../domain/repositories/category.repository'
 import { FindCategoryByIdInput, FindCategoryByIdOutput } from './find-category-by-id.dtos'
 
-export class FindCategoryByIdUseCase {
+export class FindCategoryByIdUseCase implements UseCase<FindCategoryByIdInput, FindCategoryByIdOutput> {
   constructor(private readonly repository: CategoryRepository.Repository) {}
 
   async execute(input: FindCategoryByIdInput): Promise<FindCategoryByIdOutput> {

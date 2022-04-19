@@ -12,7 +12,11 @@ describe('FindCategoryUseCase Unit Tests', () => {
     findCategoryUseCase = new FindCategoryByIdUseCase(repository)
   })
 
-  it('should create a new category', async () => {
+  it('should throw EntityNotFoundError when entity is not found', async () => {
+    expect(findCategoryUseCase.execute('unexisting_id')).rejects.toThrowError(EntityNotFoundError)
+  })
+
+  it('should find a category by id', async () => {
     const findByIdSpy = jest.spyOn(repository, 'findById')
 
     expect(findCategoryUseCase.execute('unexisting_id')).rejects.toThrowError(EntityNotFoundError)
