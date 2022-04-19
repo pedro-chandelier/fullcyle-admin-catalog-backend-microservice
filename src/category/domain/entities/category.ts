@@ -19,48 +19,48 @@ export class Category extends Entity<CategoryProperties> {
   //   RulesValidator.validate(props.isActive, 'isActive').boolean()
   // }
 
-  static validate (props: CategoryProperties): void {
+  static validate(props: CategoryProperties): void {
     const validator = CategoryValidatorFactory.create()
     if (!validator.validate(props)) {
       throw new EntityValidationError(validator.errors)
     }
   }
 
-  update (name: string, description: string): void {
+  update(name: string, description: string): void {
     Category.validate({ name, description })
     this.name = name
     this.description = description
   }
 
-  activate (): void {
+  activate(): void {
     this.props.isActive = true
   }
 
-  deactivate (): void {
+  deactivate(): void {
     this.props.isActive = false
   }
 
-  get isActive (): boolean {
+  get isActive(): boolean {
     return !!this.props.isActive
   }
 
-  get name (): string {
+  get name(): string {
     return this.props.name
   }
 
-  private set name (value: string) {
+  private set name(value: string) {
     this.props.name = value
   }
 
-  get description (): string {
+  get description(): string {
     return this.props.description
   }
 
-  private set description (value: string) {
+  private set description(value: string) {
     this.props.description = value
   }
 
-  get createdAt (): Date {
+  get createdAt(): Date {
     return this.props.createdAt
   }
 }

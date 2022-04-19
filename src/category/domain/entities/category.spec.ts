@@ -6,7 +6,6 @@ describe('Category Unit Tests', () => {
   Category.validate = jest.fn(() => {})
 
   it('should create with correct values', () => {
-
     const creationDate = new Date()
     const category = new Category({
       id: new UniqueEntityId('123e4567-e89b-12d3-a456-426614174000'),

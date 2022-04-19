@@ -11,19 +11,19 @@ type AssertionParams = {
 
 type ExpectedValidationRule = Omit<AssertionParams, 'rule'>
 
-function assertIsInvalid ({ value, property, error, rule, params = [] }: AssertionParams): void {
+function assertIsInvalid({ value, property, error, rule, params = [] }: AssertionParams): void {
   expect(() => {
     runRule({ value, property, rule, params })
   }).toThrowError(error)
 }
 
-function assertIsValid ({ value, property, rule, params = [] }: AssertionParams): void {
+function assertIsValid({ value, property, rule, params = [] }: AssertionParams): void {
   expect(() => {
     runRule({ value, property, rule, params })
   }).not.toThrow()
 }
 
-function runRule ({ value, property, rule, params = [] }: Omit<AssertionParams, 'error'>) {
+function runRule({ value, property, rule, params = [] }: Omit<AssertionParams, 'error'>) {
   const validator = RulesValidator.validate(value, property)
   const method = validator[rule]
   method.apply(validator, params)
@@ -66,7 +66,7 @@ describe('ValidationRules', () => {
         { value: new Date(), property: 'any_field' },
         { value: {}, property: 'any_field' },
         { value: [], property: 'any_field' },
-        { value: [{ prop: '' }, 1, true, false, new Date()], property: 'any_field' },
+        { value: [{ prop: '' }, 1, true, false, new Date()], property: 'any_field' }
       ]
 
       arrangeValidScenarios.forEach(valid => {
@@ -118,14 +118,12 @@ describe('ValidationRules', () => {
         assertIsInvalid({ value, property, error, rule: RULE, params })
       })
 
-      assertIsValid(
-        {
-          value: '12345',
-          property: 'any_property',
-          params: [5],
-          rule: RULE
-        }
-      )
+      assertIsValid({
+        value: '12345',
+        property: 'any_property',
+        params: [5],
+        rule: RULE
+      })
     })
   })
 

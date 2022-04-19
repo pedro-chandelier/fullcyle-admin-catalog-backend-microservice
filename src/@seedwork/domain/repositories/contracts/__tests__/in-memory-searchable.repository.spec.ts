@@ -104,7 +104,7 @@ describe('InMemorySearchableRepository Unit Tests', () => {
           current_page: 1,
           filter: null,
           items: items.slice(0, 15),
-          items_per_page: 15,
+          per_page: 15,
           sort: null,
           sort_dir: null,
           total: 16
@@ -125,7 +125,7 @@ describe('InMemorySearchableRepository Unit Tests', () => {
         new SearchParams({
           filter: 'any_name',
           page: 1,
-          items_per_page: 2
+          per_page: 2
         })
       )
 
@@ -135,7 +135,7 @@ describe('InMemorySearchableRepository Unit Tests', () => {
           current_page: 1,
           filter: 'any_name',
           items: [items[0], items[1]],
-          items_per_page: 2,
+          per_page: 2,
           sort: null,
           sort_dir: null,
           total: 3
@@ -146,7 +146,7 @@ describe('InMemorySearchableRepository Unit Tests', () => {
         new SearchParams({
           filter: 'any_name',
           page: 2,
-          items_per_page: 2
+          per_page: 2
         })
       )
 
@@ -156,7 +156,7 @@ describe('InMemorySearchableRepository Unit Tests', () => {
           current_page: 2,
           filter: 'any_name',
           items: [items[2]],
-          items_per_page: 2,
+          per_page: 2,
           sort: null,
           sort_dir: null,
           total: 3
@@ -180,7 +180,7 @@ describe('InMemorySearchableRepository Unit Tests', () => {
           sort: 'name',
           sort_dir: 'asc',
           page: 1,
-          items_per_page: 2
+          per_page: 2
         })
       )
 
@@ -190,7 +190,7 @@ describe('InMemorySearchableRepository Unit Tests', () => {
           current_page: 1,
           filter: null,
           items: [items[0], items[2]],
-          items_per_page: 2,
+          per_page: 2,
           sort: 'name',
           sort_dir: 'asc',
           total: 5
@@ -203,7 +203,7 @@ describe('InMemorySearchableRepository Unit Tests', () => {
           sort: 'name',
           sort_dir: 'desc',
           page: 1,
-          items_per_page: 2
+          per_page: 2
         })
       )
 
@@ -213,7 +213,7 @@ describe('InMemorySearchableRepository Unit Tests', () => {
           current_page: 1,
           filter: null,
           items: [items[3], items[4]],
-          items_per_page: 2,
+          per_page: 2,
           sort: 'name',
           sort_dir: 'desc',
           total: 5
@@ -226,7 +226,7 @@ describe('InMemorySearchableRepository Unit Tests', () => {
           sort: 'name',
           sort_dir: 'desc',
           page: 2,
-          items_per_page: 3
+          per_page: 3
         })
       )
 
@@ -236,7 +236,7 @@ describe('InMemorySearchableRepository Unit Tests', () => {
           current_page: 2,
           filter: null,
           items: [items[2], items[0]],
-          items_per_page: 3,
+          per_page: 3,
           sort: 'name',
           sort_dir: 'desc',
           total: 5
@@ -261,13 +261,13 @@ describe('InMemorySearchableRepository Unit Tests', () => {
             sort: 'name',
             sort_dir: 'asc',
             page: 1,
-            items_per_page: 2
+            per_page: 2
           }),
           results: new SearchResult({
             current_page: 1,
             filter: 'a',
             items: [items[1], items[0]],
-            items_per_page: 2,
+            per_page: 2,
             sort: 'name',
             sort_dir: 'asc',
             total: 2
@@ -279,13 +279,13 @@ describe('InMemorySearchableRepository Unit Tests', () => {
             sort: 'name',
             sort_dir: 'desc',
             page: 1,
-            items_per_page: 2
+            per_page: 2
           }),
           results: new SearchResult({
             current_page: 1,
             filter: 'a',
             items: [items[0], items[1]],
-            items_per_page: 2,
+            per_page: 2,
             sort: 'name',
             sort_dir: 'desc',
             total: 2
@@ -297,13 +297,13 @@ describe('InMemorySearchableRepository Unit Tests', () => {
             sort: 'name',
             sort_dir: 'desc',
             page: 10,
-            items_per_page: 2
+            per_page: 2
           }),
           results: new SearchResult({
             current_page: 10,
             filter: 'e',
             items: [],
-            items_per_page: 2,
+            per_page: 2,
             sort: 'name',
             sort_dir: 'desc',
             total: 1

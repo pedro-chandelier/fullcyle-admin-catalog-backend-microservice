@@ -11,11 +11,12 @@ describe('ClassValidator Unit Tests', () => {
 
   it('should throw errors', () => {
     const validator = new ClassValidatorStub()
-    const validateSyncSpy = jest.spyOn(classValidatorLib, 'validateSync')
-      .mockReturnValue([{
+    const validateSyncSpy = jest.spyOn(classValidatorLib, 'validateSync').mockReturnValue([
+      {
         property: 'field',
         constraints: { isRequired: 'any_error' }
-      }])
+      }
+    ])
 
     expect(validator.validate(null)).toBeFalsy()
     expect(validateSyncSpy).toHaveBeenCalled()

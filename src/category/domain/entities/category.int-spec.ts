@@ -4,35 +4,21 @@ describe('Category Integration Tests', () => {
   describe('create category tests', () => {
     it('should throw when invalid category name is specified', () => {
       expect(() => new Category({ name: null })).toContainValidationErrorMessages({
-        name: [
-          'name should not be empty',
-          'name must be a string',
-          'name must be shorter than or equal to 255 characters'
-        ]
+        name: ['name should not be empty', 'name must be a string', 'name must be shorter than or equal to 255 characters']
       })
 
       expect(() => new Category({ name: undefined })).toContainValidationErrorMessages({
-        name: [
-          'name should not be empty',
-          'name must be a string',
-          'name must be shorter than or equal to 255 characters'
-        ]
+        name: ['name should not be empty', 'name must be a string', 'name must be shorter than or equal to 255 characters']
       })
 
       expect(() => new Category({ name: '' })).toContainValidationErrorMessages({ name: ['name should not be empty'] })
 
       expect(() => new Category({ name: 5 as any })).toContainValidationErrorMessages({
-        name: [
-          'name must be a string',
-          'name must be shorter than or equal to 255 characters'
-        ]
+        name: ['name must be a string', 'name must be shorter than or equal to 255 characters']
       })
 
       expect(() => new Category({ name: true as any })).toContainValidationErrorMessages({
-        name: [
-          'name must be a string',
-          'name must be shorter than or equal to 255 characters'
-        ]
+        name: ['name must be a string', 'name must be shorter than or equal to 255 characters']
       })
 
       expect(() => new Category({ name: 'l'.repeat(256) })).toContainValidationErrorMessages({
@@ -41,27 +27,23 @@ describe('Category Integration Tests', () => {
     })
 
     it('should throw when invalid category description is specified', () => {
-      expect(() => new Category({ name: 'any_name', description: 5 as any }))
-        .toContainValidationErrorMessages({
-          description: ['description must be a string']
-        })
+      expect(() => new Category({ name: 'any_name', description: 5 as any })).toContainValidationErrorMessages({
+        description: ['description must be a string']
+      })
 
-      expect(() => new Category({ name: 'any_name', description: true as any }))
-        .toContainValidationErrorMessages({
-          description: ['description must be a string']
-        })
+      expect(() => new Category({ name: 'any_name', description: true as any })).toContainValidationErrorMessages({
+        description: ['description must be a string']
+      })
     })
 
     it('should throw when invalid category isActive is specified', () => {
-      expect(() => new Category({ name: 'any_name', isActive: 1 as any }))
-        .toContainValidationErrorMessages({
-          isActive: ['isActive must be a boolean value']
-        })
+      expect(() => new Category({ name: 'any_name', isActive: 1 as any })).toContainValidationErrorMessages({
+        isActive: ['isActive must be a boolean value']
+      })
 
-      expect(() => new Category({ name: 'any_name', isActive: '' as any }))
-        .toContainValidationErrorMessages({
-          isActive: ['isActive must be a boolean value']
-        })
+      expect(() => new Category({ name: 'any_name', isActive: '' as any })).toContainValidationErrorMessages({
+        isActive: ['isActive must be a boolean value']
+      })
     })
 
     it('should create a valid category', () => {
@@ -73,7 +55,6 @@ describe('Category Integration Tests', () => {
         new Category({ name: 'any_name', description: 'any_description', isActive: false }) // NOSONAR
       }).not.toThrow()
     })
-
   })
 
   describe('update category tests', () => {
@@ -81,19 +62,11 @@ describe('Category Integration Tests', () => {
 
     it('should throw when invalid category name is specified', () => {
       expect(() => category.update(null, 'any_description')).toContainValidationErrorMessages({
-        name: [
-          'name should not be empty',
-          'name must be a string',
-          'name must be shorter than or equal to 255 characters'
-        ]
+        name: ['name should not be empty', 'name must be a string', 'name must be shorter than or equal to 255 characters']
       })
 
       expect(() => category.update(undefined, 'any_description')).toContainValidationErrorMessages({
-        name: [
-          'name should not be empty',
-          'name must be a string',
-          'name must be shorter than or equal to 255 characters'
-        ]
+        name: ['name should not be empty', 'name must be a string', 'name must be shorter than or equal to 255 characters']
       })
 
       expect(() => category.update('', 'any_description')).toContainValidationErrorMessages({
@@ -101,17 +74,11 @@ describe('Category Integration Tests', () => {
       })
 
       expect(() => category.update(5 as any, 'any_description')).toContainValidationErrorMessages({
-        name: [
-          'name must be a string',
-          'name must be shorter than or equal to 255 characters'
-        ]
+        name: ['name must be a string', 'name must be shorter than or equal to 255 characters']
       })
 
       expect(() => category.update(true as any, 'any_description')).toContainValidationErrorMessages({
-        name: [
-          'name must be a string',
-          'name must be shorter than or equal to 255 characters'
-        ]
+        name: ['name must be a string', 'name must be shorter than or equal to 255 characters']
       })
 
       expect(() => category.update('l'.repeat(256), 'any_description')).toContainValidationErrorMessages({

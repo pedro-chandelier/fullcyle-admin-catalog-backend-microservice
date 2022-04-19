@@ -71,7 +71,7 @@ export abstract class InMemorySearchableRepository<E extends Entity>
     return sort && this.sortableFields.includes(sort)
   }
 
-  protected applyPagination(items: E[], page: SearchParams['page'], itemsPerPage: SearchParams['items_per_page']): Promise<E[]> {
+  protected applyPagination(items: E[], page: SearchParams['page'], itemsPerPage: SearchParams['per_page']): Promise<E[]> {
     const start = (page - 1) * itemsPerPage
     const limit = start + itemsPerPage
     return Promise.resolve(items.slice(start, limit))
@@ -80,13 +80,13 @@ export abstract class InMemorySearchableRepository<E extends Entity>
   async search(props: SearchParams): Promise<SearchResult<E>> {
     const filteredItems = await this.applyFilter(this.items, props.filter)
     const sortedItems = await this.applySort(filteredItems, props.sort, props.sort_dir)
-    const paginatedItems = await this.applyPagination(sortedItems, props.page, props.items_per_page)
+    const paginatedItems = await this.applyPagination(sortedItems, props.page, props.per_page)
 
     return new SearchResult({
       items: paginatedItems,
       total: filteredItems.length,
       current_page: props.page,
-      items_per_page: props.items_per_page,
+      per_page: props.per_page,
       sort: props.sort,
       sort_dir: props.sort_dir,
       filter: props.filter

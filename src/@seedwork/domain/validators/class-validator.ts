@@ -5,7 +5,7 @@ export abstract class ClassValidator<ValidatedProps> implements FieldsValidatorI
   errors: FieldsErrors = null
   validatedData: ValidatedProps = null
 
-  validate (data: any): boolean {
+  validate(data: any): boolean {
     const errors = validateSync(data)
 
     if (errors.length) {
@@ -17,7 +17,7 @@ export abstract class ClassValidator<ValidatedProps> implements FieldsValidatorI
     return true
   }
 
-  private aggregateErrorMessages (errors: ValidationError[]): void {
+  private aggregateErrorMessages(errors: ValidationError[]): void {
     this.errors = {}
 
     for (const error of errors) {

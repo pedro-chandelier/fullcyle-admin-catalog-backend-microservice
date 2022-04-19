@@ -5,7 +5,7 @@ describe('SearchResult Unit Tests', () => {
       items: ['entity_1', 'entity_2'] as any,
       total: 4,
       current_page: 1,
-      items_per_page: 2,
+      per_page: 2,
       sort: null,
       sort_dir: null,
       filter: null
@@ -15,7 +15,7 @@ describe('SearchResult Unit Tests', () => {
       items: ['entity_1', 'entity_2'],
       total: 4,
       current_page: 1,
-      items_per_page: 2,
+      per_page: 2,
       sort: null,
       sort_dir: null,
       filter: null,
@@ -26,7 +26,7 @@ describe('SearchResult Unit Tests', () => {
       items: ['entity_1', 'entity_2'] as any,
       total: 4,
       current_page: 1,
-      items_per_page: 2,
+      per_page: 2,
       sort: 'name',
       sort_dir: 'asc',
       filter: 'test'
@@ -36,7 +36,7 @@ describe('SearchResult Unit Tests', () => {
       items: ['entity_1', 'entity_2'],
       total: 4,
       current_page: 1,
-      items_per_page: 2,
+      per_page: 2,
       sort: 'name',
       sort_dir: 'asc',
       filter: 'test',
@@ -44,12 +44,12 @@ describe('SearchResult Unit Tests', () => {
     })
   })
 
-  it('should set last_page = 1 when items_per_page is greater than total field', () => {
+  it('should set last_page = 1 when per_page is greater than total field', () => {
     const result = new SearchResult({
       items: [],
       total: 4,
       current_page: 1,
-      items_per_page: 15,
+      per_page: 15,
       sort: 'name',
       sort_dir: 'asc',
       filter: 'test'
@@ -63,7 +63,7 @@ describe('SearchResult Unit Tests', () => {
       items: [],
       total: 101,
       current_page: 1,
-      items_per_page: 20,
+      per_page: 20,
       sort: 'name',
       sort_dir: 'asc',
       filter: 'test'

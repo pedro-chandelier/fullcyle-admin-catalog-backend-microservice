@@ -8,10 +8,10 @@ expect.extend({
   toContainValidationErrorMessages
 })
 
-type FunctionExpected = (() => any)
-type Expected = { validator: ClassValidator<any>, data: any } | FunctionExpected
+type FunctionExpected = () => any
+type Expected = { validator: ClassValidator<any>; data: any } | FunctionExpected
 
-function toContainValidationErrorMessages (expected: Expected, received: FieldsErrors) {
+function toContainValidationErrorMessages(expected: Expected, received: FieldsErrors) {
   if (typeof expected === 'function') {
     return assertWhenExpectedIsFunction(expected, received)
   }
@@ -24,11 +24,11 @@ function toContainValidationErrorMessages (expected: Expected, received: FieldsE
   return assertContainsErrorMessages(received, validator.errors)
 }
 
-function isValid () {
+function isValid() {
   return { pass: false, message: () => 'The data is valid' }
 }
 
-function assertWhenExpectedIsFunction (expected: FunctionExpected, received: FieldsErrors) {
+function assertWhenExpectedIsFunction(expected: FunctionExpected, received: FieldsErrors) {
   try {
     expected()
     return isValid()
@@ -38,7 +38,7 @@ function assertWhenExpectedIsFunction (expected: FunctionExpected, received: Fie
   }
 }
 
-function assertContainsErrorMessages (received: FieldsErrors, errors: FieldsErrors) {
+function assertContainsErrorMessages(received: FieldsErrors, errors: FieldsErrors) {
   const isMatch = objectContaining(received).asymmetricMatch(errors)
 
   if (isMatch) {
@@ -48,14 +48,13 @@ function assertContainsErrorMessages (received: FieldsErrors, errors: FieldsErro
   return failed(received, errors)
 }
 
-function success () {
+function success() {
   return { pass: true, message: () => '' }
 }
 
-function failed (received: FieldsErrors, errors: FieldsErrors) {
+function failed(received: FieldsErrors, errors: FieldsErrors) {
   return {
     pass: false,
-    message: () =>
-      `Expected: "${JSON.stringify(received)}"\nReceived: "${JSON.stringify(errors)}"`
+    message: () => `Expected: "${JSON.stringify(received)}"\nReceived: "${JSON.stringify(errors)}"`
   }
 }
