@@ -29,7 +29,7 @@ export class Category extends Entity<CategoryProperties> {
   update(name: string, description: string): void {
     Category.validate({ name, description })
     this.name = name
-    this.description = description
+    this.description = description ?? null
   }
 
   activate(): void {
