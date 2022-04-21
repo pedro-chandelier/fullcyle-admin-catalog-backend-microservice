@@ -13,6 +13,7 @@
     "test:watch:all": "jest --watchAll",
     "test:watch": "jest --watch",
     "test": "jest",
+    "test:cov": "npm run test -- --coverage",
     "ts-node": "ts-node",
     "tsc": "tsc"
   },
