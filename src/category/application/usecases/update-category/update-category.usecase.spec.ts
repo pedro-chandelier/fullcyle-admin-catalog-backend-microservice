@@ -1,7 +1,7 @@
-import { EntityNotFoundError } from '../../../../../@seedwork/domain/repositories/errors/entity-not-found.error'
-import { CategoryInMemoryRepository } from '../../../../infra/repositories/category-in-memory.repository'
-import { UpdateCategoryUseCase } from '../update-category.usecase'
-import { Category } from '../../../../domain/entities/category'
+import { EntityNotFoundError } from '../../../../@seedwork/domain/repositories/errors/entity-not-found.error'
+import { Category } from '../../../domain/entities/category'
+import { CategoryInMemoryRepository } from '../../../infra/repositories/category-in-memory.repository'
+import { UpdateCategoryUseCase } from './update-category.usecase'
 
 describe('UpdateCategoryUseCase Unit Tests', () => {
   let usecase: UpdateCategoryUseCase
