@@ -1,8 +1,9 @@
-import { UseCase } from '../../../../@seedwork/application/usecase'
-import { Category } from '../../../domain/entities/category'
-import { CategoryRepository } from '../../../domain/repositories/category.repository'
-import { CreateCategoryInput, CreateCategoryOutput } from './create-category.dtos'
+import { Category } from '#category/domain/entities/category'
+import { CategoryRepository } from '#category/domain/repositories/category.repository'
+import { UseCase } from '#seedwork/application/usecase'
+
 import { CategoryOutputMapper } from '../@shared/category.mapper'
+import { CreateCategoryInput, CreateCategoryOutput } from './create-category.dtos'
 
 export class CreateCategoryUseCase implements UseCase<CreateCategoryInput, CreateCategoryOutput> {
   constructor(private readonly repository: CategoryRepository.Repository) {}

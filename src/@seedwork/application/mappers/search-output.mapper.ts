@@ -1,5 +1,5 @@
-import { SearchOutputDTO } from './../dtos/search-output.dto'
-import { SearchResult } from '@seedwork/domain/repositories/contracts/repository-contracts-search-result'
+import { SearchOutputDTO } from '#seedwork/application/dtos/search-output.dto'
+import { SearchResult } from '#seedwork/domain/repositories/contracts/repository-contracts-search-result'
 
 export class SearchResultMapper {
   static toOutput(result: SearchResult): Omit<SearchOutputDTO, 'items'> {

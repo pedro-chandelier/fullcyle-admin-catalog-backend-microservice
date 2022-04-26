@@ -1,5 +1,5 @@
-import { Entity } from '../../../entities/entity'
-import { InMemorySearchableRepository } from '../../in-memory/in-memory.repository'
+import { Entity } from '#seedwork/domain/entities/entity'
+import { InMemorySearchableRepository } from '#seedwork/domain/repositories/in-memory/in-memory.repository'
 
 type EntityPropsStub = {
   name: string

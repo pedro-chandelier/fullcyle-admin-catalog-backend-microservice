@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "video catalog admin",
   "main": "index.js",
+  "imports": {
+    "#seedwork/*": "./dist/@seedwork/*.js",
+    "#category/*": "./dist/category/*.js"
+  },
   "scripts": {
     "format:eslint": "eslint --fix",
     "format:prettier": "npx prettier --write src",

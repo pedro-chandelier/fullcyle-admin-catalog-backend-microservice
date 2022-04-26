@@ -1,6 +1,7 @@
-import { EntityNotFoundError } from '../../../../@seedwork/domain/repositories/errors/entity-not-found.error'
-import { Category } from '../../../../category/domain/entities/category'
-import { CategoryInMemoryRepository } from '../../../infra/repositories/category-in-memory.repository'
+import { Category } from '#category/domain/entities/category'
+import { CategoryInMemoryRepository } from '#category/infra/repositories/category-in-memory.repository'
+import { EntityNotFoundError } from '#seedwork/domain/repositories/errors/entity-not-found.error'
+
 import { FindCategoryByIdUseCase } from './find-category-by-id.usecase'
 
 describe('FindCategoryUseCase Unit Tests', () => {

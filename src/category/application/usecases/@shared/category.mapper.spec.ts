@@ -1,6 +1,7 @@
-import { Category } from '../../../domain/entities/category'
+import { Category } from '#category/domain/entities/category'
+import { UniqueEntityId } from '#seedwork/domain/value-objects/unique-entity-id/unique-entity-id'
+
 import { CategoryOutputMapper } from './category.mapper'
-import { UniqueEntityId } from '../../../../@seedwork/domain/value-objects/unique-entity-id/unique-entity-id'
 
 describe('CategoryOutputMapper Unit Tests', () => {
   it('should convert a category into output', () => {

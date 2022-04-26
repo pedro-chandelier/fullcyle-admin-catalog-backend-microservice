@@ -1,4 +1,4 @@
-import { Entity } from '../../entities/entity'
+import { Entity } from '#seedwork/domain/entities/entity'
 import { InMemoryRepository } from './in-memory.repository'
 
 export type EntityPropsStub = {

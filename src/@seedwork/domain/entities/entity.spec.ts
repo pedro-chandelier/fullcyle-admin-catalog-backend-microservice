@@ -1,6 +1,7 @@
-import { UniqueEntityId } from '../value-objects/unique-entity-id/unique-entity-id'
-import { Entity } from './entity'
+import { UniqueEntityId } from '#seedwork/domain/value-objects/unique-entity-id/unique-entity-id'
 import { validate as uuidValidate } from 'uuid'
+
+import { Entity } from './entity'
 
 class EntityStub extends Entity<{ prop1: string; prop2: number }> {}
 

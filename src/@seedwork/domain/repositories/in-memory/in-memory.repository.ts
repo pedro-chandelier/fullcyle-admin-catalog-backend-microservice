@@ -1,8 +1,9 @@
-import { SearchResult } from './../contracts/repository-contracts-search-result'
-import { SearchParams, SortDirection } from './../contracts/repository-contracts-search-params'
+import { Entity } from '#seedwork/domain/entities/entity'
+import { UniqueEntityId } from '#seedwork/domain/value-objects/unique-entity-id/unique-entity-id'
+
+import { SearchParams, SortDirection } from '../contracts/repository-contracts-search-params'
+import { SearchResult } from '../contracts/repository-contracts-search-result'
 import { RepositoryInterface, SearchableRepositoryInterface } from '../contracts/repository-contracts.interface'
-import { Entity } from '../../entities/entity'
-import { UniqueEntityId } from '../../value-objects/unique-entity-id/unique-entity-id'
 import { EntityNotFoundError } from '../errors/entity-not-found.error'
 
 export abstract class InMemoryRepository<E extends Entity> implements RepositoryInterface<E> {

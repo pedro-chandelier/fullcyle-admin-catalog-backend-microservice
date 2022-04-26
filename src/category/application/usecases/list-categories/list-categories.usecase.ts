@@ -1,6 +1,7 @@
-import { SearchResultMapper } from '../../../../@seedwork/application/mappers/search-output.mapper'
-import { UseCase } from '../../../../@seedwork/application/usecase'
-import { CategoryRepository } from '../../../domain/repositories/category.repository'
+import { CategoryRepository } from '#category/domain/repositories/category.repository'
+import { SearchResultMapper } from '#seedwork/application/mappers/search-output.mapper'
+import { UseCase } from '#seedwork/application/usecase'
+
 import { CategoryOutputMapper } from '../@shared/category.mapper'
 import { ListCategoriesInput, ListCategoriesOutput } from './list-categories.dtos'
 

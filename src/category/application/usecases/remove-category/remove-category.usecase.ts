@@ -1,5 +1,6 @@
-import { UseCase } from '../../../../@seedwork/application/usecase'
-import { CategoryRepository } from '../../../domain/repositories/category.repository'
+import { CategoryRepository } from '#category/domain/repositories/category.repository'
+import { UseCase } from '#seedwork/application/usecase'
+
 import { RemoveCategoryInput } from './remove-category.dtos'
 
 export class RemoveCategoryUseCase implements UseCase<RemoveCategoryInput, void> {

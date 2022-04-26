@@ -1,7 +1,8 @@
-import { SearchableRepositoryInterface } from '../../../@seedwork/domain/repositories/contracts/repository-contracts.interface'
+import { SearchParams as DefaultSearchParams } from '#seedwork/domain/repositories/contracts/repository-contracts-search-params'
+import { SearchResult as DefaultSearchResult } from '#seedwork/domain/repositories/contracts/repository-contracts-search-result'
+import { SearchableRepositoryInterface } from '#seedwork/domain/repositories/contracts/repository-contracts.interface'
+
 import { Category } from '../entities/category'
-import { SearchResult as DefaultSearchResult } from '../../../@seedwork/domain/repositories/contracts/repository-contracts-search-result'
-import { SearchParams as DefaultSearchParams } from '../../../@seedwork/domain/repositories/contracts/repository-contracts-search-params'
 
 export namespace CategoryRepository {
   export type Filter = string

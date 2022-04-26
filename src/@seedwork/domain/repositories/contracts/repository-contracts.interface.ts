@@ -1,5 +1,6 @@
-import { Entity } from '../../entities/entity'
-import { UniqueEntityId } from '../../value-objects/unique-entity-id/unique-entity-id'
+import { Entity } from '#seedwork/domain/entities/entity'
+import { UniqueEntityId } from '#seedwork/domain/value-objects/unique-entity-id/unique-entity-id'
+
 import { SearchParams } from './repository-contracts-search-params'
 import { SearchResult } from './repository-contracts-search-result'
 

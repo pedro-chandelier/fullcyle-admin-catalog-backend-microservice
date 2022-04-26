@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const unique_entity_id_1 = require("../../../@seedwork/domain/value-objects/unique-entity-id/unique-entity-id");
+const unique_entity_id_1 = require("#seedwork/domain/value-objects/unique-entity-id/unique-entity-id");
 const category_1 = require("./category");
 describe('Category Unit Tests', () => {
     // isolating Category.validate so that it does not affect unit tests

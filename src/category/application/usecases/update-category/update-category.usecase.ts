@@ -1,7 +1,8 @@
-import { UseCase } from '../../../../@seedwork/application/usecase'
-import { CategoryRepository } from '../../../domain/repositories/category.repository'
-import { UpdateCategoryInput, UpdateCategoryOutput } from './update-category.dtos'
+import { CategoryRepository } from '#category/domain/repositories/category.repository'
+import { UseCase } from '#seedwork/application/usecase'
+
 import { CategoryOutputMapper } from '../@shared/category.mapper'
+import { UpdateCategoryInput, UpdateCategoryOutput } from './update-category.dtos'
 
 export class UpdateCategoryUseCase implements UseCase<UpdateCategoryInput, UpdateCategoryOutput> {
   constructor(private readonly repository: CategoryRepository.Repository) {}

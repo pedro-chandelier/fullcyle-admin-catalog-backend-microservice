@@ -1,4 +1,4 @@
-import { SearchResult } from '../../domain/repositories/contracts/repository-contracts-search-result'
+import { SearchResult } from '#seedwork/domain/repositories/contracts/repository-contracts-search-result'
 import { SearchResultMapper } from './search-output.mapper'
 
 describe('SearchResultMapper Unit Tests', () => {

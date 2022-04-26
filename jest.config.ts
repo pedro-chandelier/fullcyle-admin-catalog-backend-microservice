@@ -6,6 +6,10 @@ export default {
     '^.+\\.ts?$': ['@swc/jest']
   },
   setupFilesAfterEnv: ['./@seedwork/domain/tests/validations.extend.ts'],
+  moduleNameMapper: {
+    '#seedwork/(.*)': '<rootDir>/@seedwork/$1',
+    '#category/(.*)': '<rootDir>/category/$1'
+  },
   coverageProvider: 'v8',
   coverageDirectory: '<rootDir>/../__coverage__',
   coverageReporters: ['json', 'html'],

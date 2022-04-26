@@ -1,4 +1,4 @@
-import { UniqueEntityId } from '@seedwork/domain/value-objects/unique-entity-id/unique-entity-id'
+import { UniqueEntityId } from '#seedwork/domain/value-objects/unique-entity-id/unique-entity-id'
 import { Category } from './category'
 
 describe('Category Unit Tests', () => {

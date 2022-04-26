@@ -1,4 +1,4 @@
-import { Entity } from '../../entities/entity'
+import { Entity } from '#seedwork/domain/entities/entity'
 
 type SearchResultProps<E extends Entity, Filter> = {
   items: E[]

@@ -1,6 +1,8 @@
+import { EntityNotFoundError } from '#seedwork/domain/repositories/errors/entity-not-found.error'
+import { UniqueEntityId } from '#seedwork/domain/value-objects/unique-entity-id/unique-entity-id'
+
 import { EntityStub, InMemoryRepositoryStub } from './in-memory.repository.mocks'
-import { UniqueEntityId } from '../../value-objects/unique-entity-id/unique-entity-id'
-import { EntityNotFoundError } from '../errors/entity-not-found.error'
+
 describe('InMemoryRepository Unit Tests', () => {
   let repository: InMemoryRepositoryStub
 
