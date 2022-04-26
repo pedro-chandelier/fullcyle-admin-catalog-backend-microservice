@@ -8,6 +8,8 @@
     "#category/*": "./dist/category/*.js"
   },
   "scripts": {
+    "cti": "cti",
+    "cti:@core": "sh cti.sh",
     "format:eslint": "eslint --fix",
     "format:prettier": "npx prettier --write src",
     "format": "npm run format:eslint && npm run format:prettier",
