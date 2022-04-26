@@ -6,7 +6,7 @@ import { CategoryRepository } from '../../domain/repositories/category.repositor
 export class CategoryInMemoryRepository extends InMemorySearchableRepository<Category> implements CategoryRepository.Repository {
   sortableFields = ['createdAt', 'name', 'description']
 
-  protected async applyFilter(items: Category[], filter: CategoryRepository.Filter): Promise<Category[]> {
+  protected async applyFilter(items: Category[], filter: CategoryRepository.Filter | null): Promise<Category[]> {
     if (!filter) return items
 
     return items.filter(e => {
