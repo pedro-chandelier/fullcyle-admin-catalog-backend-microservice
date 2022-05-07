@@ -1,4 +1,8 @@
 export default {
+  displayName: {
+    name: '@core',
+    color: 'blue'
+  },
   clearMocks: true,
   rootDir: 'src',
   testRegex: ['.*\\..*spec\\.ts$', '.*\\..*test\\.ts$'],

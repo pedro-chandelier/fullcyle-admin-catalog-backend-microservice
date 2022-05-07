@@ -1,5 +1,3 @@
-import { objectContaining } from 'expect'
-
 import { ClassValidator } from '../validators/class-validator'
 import { EntityValidationError } from '../validators/errors/entity-validation.error'
 import { FieldsErrors } from '../validators/fields-validator.interface'
@@ -39,7 +37,7 @@ function assertWhenExpectedIsFunction(expected: FunctionExpected, received: Fiel
 }
 
 function assertContainsErrorMessages(received: FieldsErrors, errors: FieldsErrors) {
-  const isMatch = objectContaining(received).asymmetricMatch(errors)
+  const isMatch = expect.objectContaining(received).asymmetricMatch(errors)
 
   if (isMatch) {
     return success()
