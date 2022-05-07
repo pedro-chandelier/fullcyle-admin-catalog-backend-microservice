@@ -16,7 +16,9 @@
     "format:eslint": "eslint --fix",
     "format:prettier": "npx prettier --write src",
     "format": "npm run format:eslint && npm run format:prettier",
-    "test": "jest"
+    "test": "jest",
+    "test:core": "npm run test -- --projects src/@core",
+    "test:nest": "npm run test -- --projects src/nestjs"
   },
   "devDependencies": {
     "husky": "^7.0.4",
