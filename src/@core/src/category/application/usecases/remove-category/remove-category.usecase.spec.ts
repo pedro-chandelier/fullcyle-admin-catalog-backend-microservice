@@ -6,14 +6,14 @@ import { FindCategoryByIdUseCase } from '../find-category/find-category-by-id.us
 import { RemoveCategoryUseCase } from './remove-category.usecase'
 
 describe('RemoveCategory Unit Tests', () => {
-  let findCategoryUseCase: FindCategoryByIdUseCase
-  let removeCategoryUseCase: RemoveCategoryUseCase
+  let findCategoryUseCase: FindCategoryByIdUseCase.UseCase
+  let removeCategoryUseCase: RemoveCategoryUseCase.UseCase
   let repository: CategoryInMemoryRepository
 
   beforeEach(() => {
     repository = new CategoryInMemoryRepository()
-    findCategoryUseCase = new FindCategoryByIdUseCase(repository)
-    removeCategoryUseCase = new RemoveCategoryUseCase(repository)
+    findCategoryUseCase = new FindCategoryByIdUseCase.UseCase(repository)
+    removeCategoryUseCase = new RemoveCategoryUseCase.UseCase(repository)
   })
 
   it('should throw EntityNotFoundError when specified category id not exists', async () => {

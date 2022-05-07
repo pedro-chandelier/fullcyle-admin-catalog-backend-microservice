@@ -1,4 +1,4 @@
 // created from 'create-ts-index'
 
 export * from './dtos'
-export * from './category.mapper'
+export * from './mappers'

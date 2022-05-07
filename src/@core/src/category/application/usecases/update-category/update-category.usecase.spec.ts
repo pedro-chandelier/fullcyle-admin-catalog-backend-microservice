@@ -5,12 +5,12 @@ import { EntityNotFoundError } from '#seedwork/domain/repositories/errors/entity
 import { UpdateCategoryUseCase } from './update-category.usecase'
 
 describe('UpdateCategoryUseCase Unit Tests', () => {
-  let usecase: UpdateCategoryUseCase
+  let usecase: UpdateCategoryUseCase.UseCase
   let repository: CategoryInMemoryRepository
 
   beforeEach(() => {
     repository = new CategoryInMemoryRepository()
-    usecase = new UpdateCategoryUseCase(repository)
+    usecase = new UpdateCategoryUseCase.UseCase(repository)
   })
 
   it('should throw EntityNotFoundError when entity is not found', async () => {

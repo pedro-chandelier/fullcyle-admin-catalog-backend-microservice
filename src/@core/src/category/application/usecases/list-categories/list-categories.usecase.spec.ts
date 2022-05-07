@@ -5,12 +5,12 @@ import { CategoryInMemoryRepository } from '#category/infra/repositories/categor
 import { ListCategoriesUseCase } from './list-categories.usecase'
 
 describe('ListCategoriesUseCase Unit Tests', () => {
-  let listCategoriesUseCase: ListCategoriesUseCase
+  let listCategoriesUseCase: ListCategoriesUseCase.UseCase
   let repository: CategoryInMemoryRepository
 
   beforeEach(() => {
     repository = new CategoryInMemoryRepository()
-    listCategoriesUseCase = new ListCategoriesUseCase(repository)
+    listCategoriesUseCase = new ListCategoriesUseCase.UseCase(repository)
   })
 
   describe('toOutput()', () => {

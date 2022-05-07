@@ -4,12 +4,8 @@
     "baseUrl": "src",
     "outDir": "dist",
     "paths": {
-      "#seedwork/*": [
-        "./@seedwork/*"
-      ],
-      "#category/*": [
-        "./category/*"
-      ]
+      "#seedwork/*": ["./@seedwork/*"],
+      "#category/*": ["./category/*"]
     },
     "plugins": [
       { "transform": "typescript-transform-paths" },
@@ -17,7 +13,7 @@
     ],
     "declaration": true,
     "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
+    "esModuleInterop": true
   },
   "include": ["src"],
   "exclude": ["node_modules"]

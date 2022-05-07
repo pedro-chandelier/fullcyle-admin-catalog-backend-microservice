@@ -1,23 +1,29 @@
+import { CategoryOutputMapper } from '#category/application/usecases/@shared'
 import { CategoryRepository } from '#category/domain/repositories/category.repository'
+import { SearchInputDTO, SearchOutputDTO } from '#seedwork/application'
 import { SearchResultMapper } from '#seedwork/application/mappers/search-output.mapper'
-import { UseCase } from '#seedwork/application/usecase'
+import { UseCase as IUseCase } from '#seedwork/application/usecase'
 
-import { CategoryOutputMapper } from '../@shared/category.mapper'
-import { ListCategoriesInput, ListCategoriesOutput } from './list-categories.dtos'
+import { CategoryOutput } from '../@shared/dtos/category.dtos'
 
-export class ListCategoriesUseCase implements UseCase<ListCategoriesInput, ListCategoriesOutput> {
-  constructor(private readonly repository: CategoryRepository.Repository) {}
+export namespace ListCategoriesUseCase {
+  export type Input = SearchInputDTO<CategoryRepository.Filter>
 
-  async execute(input: ListCategoriesInput): Promise<ListCategoriesOutput> {
-    const params = new CategoryRepository.SearchParams(input)
-    const searchResult = await this.repository.search(params)
-    return this.toOutput(searchResult)
-  }
+  export type Output = SearchOutputDTO<CategoryOutput>
+  export class UseCase implements IUseCase<Input, Output> {
+    constructor(private readonly repository: CategoryRepository.Repository) {}
 
-  private toOutput(searchResult: CategoryRepository.SearchResult): ListCategoriesOutput {
-    return {
-      items: searchResult.items.map(category => CategoryOutputMapper.toOutput(category)),
-      ...SearchResultMapper.toOutput(searchResult)
+    async execute(input: Input): Promise<Output> {
+      const params = new CategoryRepository.SearchParams(input)
+      const searchResult = await this.repository.search(params)
+      return this.toOutput(searchResult)
+    }
+
+    private toOutput(searchResult: CategoryRepository.SearchResult): Output {
+      return {
+        items: searchResult.items.map(category => CategoryOutputMapper.toOutput(category)),
+        ...SearchResultMapper.toOutput(searchResult)
+      }
     }
   }
 }
