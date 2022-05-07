@@ -11,7 +11,8 @@ RUN mkdir -p /usr/share/man/man1 && \
     zsh \
     curl \
     wget \
-    fonts-powerline
+    fonts-powerline \
+    procps
 
 RUN npm i -g @nestjs/cli@8.2.5 npm@8.5.5
 

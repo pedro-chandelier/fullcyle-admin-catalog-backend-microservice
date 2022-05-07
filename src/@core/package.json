@@ -1,5 +1,5 @@
 {
-  "name": "@fc/backend-admin-catalog",
+  "name": "@fc/core",
   "version": "1.0.0",
   "description": "video admin catalog",
   "main": "index.js",
